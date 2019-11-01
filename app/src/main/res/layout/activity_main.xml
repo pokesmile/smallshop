@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/coordinator_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="bottom"
+        tools:context=".MainActivity">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/bckgrnd"
+            android:id="@+id/imageView"
+            app:layout_anchorGravity="top|center"
+            android:scaleType="fitXY"
+            app:layout_anchor="@+id/textHint"/>
+    <TextView
+            android:id="@+id/textHint"
+            android:text="@string/hint_text"
+            android:textColor="@color/common_google_signin_btn_text_light_disabled"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center_horizontal"
+            android:layout_marginTop="100sp"
+            android:layout_marginBottom="160sp"/>
+    <TextView
+            android:id="@+id/textSum"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="bottom|center_horizontal"
+            android:layout_marginTop="12sp"
+            android:layout_marginBottom="130sp"/>
+    <Button
+            android:id="@+id/btnScan"
+            android:text="@string/scan_barcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_marginBottom="60sp"/>
+    <Button
+            android:id="@+id/btnClear"
+            android:text="@string/clear"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_marginBottom="20sp"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchorGravity="bottom|center"
+            app:layout_anchor="@+id/textSum"
+            android:layout_marginBottom="200sp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

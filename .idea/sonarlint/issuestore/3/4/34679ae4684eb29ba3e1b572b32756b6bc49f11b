@@ -1,0 +1,10 @@
+
+”"squid:ClassVariableVisibilityCheck"ZMake spreadsheet_id a static final constant or non-public and provide accessors if needed.(ÖÎóëıÿÿÿÿ8ÂÁÉÇá-
+‹"squid:ClassVariableVisibilityCheck"QMake range a static final constant or non-public and provide accessors if needed.(â‡åèÿÿÿÿÿ8–Íì»â-
+Wsquid:S1444"4Make this "public static google_api_key" field final(à¡°Ùøÿÿÿÿ8ÂÁÉÇá-
+|squid:S3008"YRename this field "google_api_key" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à¡°Ùøÿÿÿÿ8ÂÁÉÇá-
+Xsquid:S1118":Add a private constructor to hide the implicit public one.(Óùÿ¿8–Íì»â-
+Wsquid:S1444"4Make this "public static spreadsheet_id" field final(ÖÎóëıÿÿÿÿ8ÂÁÉÇá-
+”"squid:ClassVariableVisibilityCheck"ZMake google_api_key a static final constant or non-public and provide accessors if needed.(à¡°Ùøÿÿÿÿ8ÂÁÉÇá-
+Nsquid:S1444"+Make this "public static range" field final(â‡åèÿÿÿÿÿ8–Íì»â-
+|squid:S3008"YRename this field "spreadsheet_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎóëıÿÿÿÿ8ÂÁÉÇá-

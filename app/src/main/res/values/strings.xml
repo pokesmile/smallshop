@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SmallShop</string>
+    <string name="app_title">Barcode Scanner</string>
+    <string name="scan_barcode">Scan</string>
+    <string name="clear">Clear</string>
+    <string name="hint_text">Scan barcodes from Small Shop</string>
+</resources>
