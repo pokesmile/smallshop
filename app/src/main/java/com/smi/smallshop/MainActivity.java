@@ -111,18 +111,22 @@ public class MainActivity extends AppCompatActivity {
             }
             int numRows = result.getValues() != null ? result.getValues().size() : 0;
             Log.d("SUCCESS.", "rows retrieved " + numRows);
-            showSnackbar(numRows + " products has been loaded");
             addDataToProducts(result);
+            showSnackbar(numRows + " products found, " + products.size() + " loaded");
             Log.i("PRODUCTS", products.toString());
         }).start();
     }
 
     private void addDataToProducts(final ValueRange result) {
+        Product.Validator validator = new Product.Validator();
         for (Object value : result.getValues()) {
             if (((ArrayList) value).size() > 2) {
-                products.add(new Product(((ArrayList) value).get(1).toString(),
+                Product validProduct = validator.getValidProduct(((ArrayList) value).get(1).toString(),
                         ((ArrayList) value).get(2).toString(),
-                        ((ArrayList) value).get(0).toString()));
+                        ((ArrayList) value).get(0).toString());
+                if (validProduct != null) {
+                    products.add(validProduct);
+                }
             }
         }
     }

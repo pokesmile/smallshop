@@ -31,7 +31,7 @@
             android:layout_marginBottom="160sp"/>
     <TextView
             android:id="@+id/textSum"
-            android:textSize="22sp"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,6 +62,6 @@
             android:layout_height="match_parent"
             app:layout_anchorGravity="bottom|center"
             app:layout_anchor="@+id/textSum"
-            android:layout_marginBottom="200sp"/>
+            android:layout_marginBottom="260sp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
