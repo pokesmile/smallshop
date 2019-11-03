@@ -18,6 +18,8 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.smi.smallshop.data.AppDatabase;
+import com.smi.smallshop.data.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Product> products = new ArrayList<>();
     private ProductAdapter productAdapter;
+    private AppDatabase db;
 
     private TextView sumTextView;
     private TextView hintTextView;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db = AppDatabase.getAppDatabase(this);
+        products.addAll(db.userDao().getAll());
 
         getProductsFromGoogleSheets();
 
@@ -107,12 +113,15 @@ public class MainActivity extends AppCompatActivity {
                         .execute();
             } catch (IOException e) {
                 Log.e("ERROR", "Couldn't get values from Google Sheets", e);
-                showSnackbar("Products has not been loaded");
+                showSnackbar("Couldn't get values from Google Sheets");
             }
-            int numRows = result.getValues() != null ? result.getValues().size() : 0;
-            Log.d("SUCCESS.", "rows retrieved " + numRows);
-            addDataToProducts(result);
-            showSnackbar(numRows + " products found, " + products.size() + " loaded");
+            if (result != null) {
+                int numRows = result.getValues().size();
+                addDataToProducts(result);
+                showSnackbar(numRows + " products has been refreshed");
+            }
+            products.clear();
+            products.addAll(db.userDao().getAll());
             Log.i("PRODUCTS", products.toString());
         }).start();
     }
@@ -121,11 +130,12 @@ public class MainActivity extends AppCompatActivity {
         Product.Validator validator = new Product.Validator();
         for (Object value : result.getValues()) {
             if (((ArrayList) value).size() > 2) {
-                Product validProduct = validator.getValidProduct(((ArrayList) value).get(1).toString(),
+                Product validProduct = validator.getValidProduct(
+                        ((ArrayList) value).get(1).toString(),
                         ((ArrayList) value).get(2).toString(),
                         ((ArrayList) value).get(0).toString());
                 if (validProduct != null) {
-                    products.add(validProduct);
+                    db.userDao().insert(validProduct);
                 }
             }
         }
