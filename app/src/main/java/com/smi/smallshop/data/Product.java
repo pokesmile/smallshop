@@ -4,11 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "product")
 public class Product {
 
     @PrimaryKey
-    private long barcode;
+    private long id;
+
+    @ColumnInfo(name = "barcode")
+    private String barcode;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -16,15 +22,28 @@ public class Product {
     @ColumnInfo(name = "price")
     private int price;
 
-    public long getBarcode() {
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getBarcode() {
         return barcode;
     }
 
-    public void setBarcode(final String barcode) {
-        setBarcode(Long.parseLong(barcode));
+    public List<Long> getBarcodes() {
+        String[] barcodeStrings = barcode.trim().split(",");
+        List<Long> barcodeList = new ArrayList<>();
+        for (String bc : barcodeStrings) {
+            barcodeList.add(Long.parseLong(bc));
+        }
+        return barcodeList;
     }
 
-    public void setBarcode(long barcode) {
+    public void setBarcode(final String barcode) {
         this.barcode = barcode;
     }
 

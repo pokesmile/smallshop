@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 long scannedBarcode = Long.parseLong(data.getStringExtra("scannedBarcode"));
                 boolean found = false;
                 for (Product product : products) {
-                    if (product.getBarcode() == scannedBarcode) {
+                    if (product.getBarcodes().contains(scannedBarcode)) {
                         productAdapter.addProduct(product);
                         setInitialVisibility(false);
                         found = true;
