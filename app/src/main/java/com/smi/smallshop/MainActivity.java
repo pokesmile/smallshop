@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 long scannedBarcode = Long.parseLong(data.getStringExtra("scannedBarcode"));
                 boolean found = false;
                 for (Product product : products) {
-                    if (product.getBarcodes().contains(scannedBarcode)) {
+                    if (product.getBarcode() == scannedBarcode) {
                         productAdapter.addProduct(product);
                         setInitialVisibility(false);
                         found = true;
@@ -127,16 +127,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addDataToProducts(final ValueRange result) {
-        Product.Validator validator = new Product.Validator();
         for (Object value : result.getValues()) {
             if (((ArrayList) value).size() > 2) {
-                Product validProduct = validator.getValidProduct(
-                        ((ArrayList) value).get(1).toString(),
-                        ((ArrayList) value).get(2).toString(),
-                        ((ArrayList) value).get(0).toString());
-                if (validProduct != null) {
-                    db.userDao().insert(validProduct);
-                }
+                String barcodeString = ((ArrayList) value).get(0).toString();
+                String nameString = ((ArrayList) value).get(1).toString();
+                String priceString = ((ArrayList) value).get(2).toString();
+                String[] barcodes = barcodeString.trim().split(",");
+                insertValidProducts(nameString, priceString, barcodes);
+            }
+        }
+    }
+
+    private void insertValidProducts(final String name, final String price, final String[] barcodes) {
+        Product.Validator validator = new Product.Validator();
+        for (String bc : barcodes) {
+            Product validProduct = validator.getValidProduct(name, price, bc);
+            if (validProduct != null) {
+                db.userDao().insert(validProduct);
             }
         }
     }

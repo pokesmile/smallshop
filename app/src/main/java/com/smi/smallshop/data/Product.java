@@ -4,17 +4,14 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity(tableName = "product")
 public class Product {
 
-    @PrimaryKey
-    private long id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     @ColumnInfo(name = "barcode")
-    private String barcode;
+    private long barcode;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -22,28 +19,19 @@ public class Product {
     @ColumnInfo(name = "price")
     private int price;
 
-    public long getId() {
-        return this.id;
-    }
-
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getBarcode() {
+    public int getId() {
+        return this.id;
+    }
+
+    public long getBarcode() {
         return barcode;
     }
 
-    public List<Long> getBarcodes() {
-        String[] barcodeStrings = barcode.trim().split(",");
-        List<Long> barcodeList = new ArrayList<>();
-        for (String bc : barcodeStrings) {
-            barcodeList.add(Long.parseLong(bc));
-        }
-        return barcodeList;
-    }
-
-    public void setBarcode(final String barcode) {
+    public void setBarcode(final long barcode) {
         this.barcode = barcode;
     }
 
@@ -72,7 +60,7 @@ public class Product {
         public Product getValidProduct(String name, String price, String barcode) {
             if (isNameValid(name) && isPriceValid(price) && isBarcodeValid(barcode)) {
                 Product product = new Product();
-                product.setBarcode(barcode);
+                product.setBarcode(Long.parseLong(barcode));
                 product.setName(name);
                 product.setPrice(price);
                 return product;
