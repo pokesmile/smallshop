@@ -1,2 +1,7 @@
 
-lsquid:MaximumInheritanceDepth	"<This class has 6 parents which is greater than 5 authorized.(ÕÕ–õ8‘ˆÅ™á-
+Vsquid:S11976"8Move the array designator from the variable to the type.(”‘ê›8ñ«Å®å-
+lsquid:MaximumInheritanceDepth"<This class has 6 parents which is greater than 5 authorized.(ÕÕ–õ8˜‚®®å-
+\"squid:SwitchLastCaseIsDefaultCheck8""Add a default case to this switch.(×ö³–úÿÿÿÿ8ñ«Å®å-
+Dsquid:S1170"!Make this final field static too.(³×Æýÿÿÿÿ8ó€º®å-
+ˆsquid:S00116"dRename this field "REQUEST_PERMISSION_CAMERA" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³×Æýÿÿÿÿ8Ë­º®å-
+nsquid:S13018"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8ñ«Å®å-
